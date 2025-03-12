@@ -1,0 +1,25 @@
+# Ignore database files
+db.sqlite3
+*.sqlite3
+
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore virtual environments
+venv/
+env/
+VR/
+
+# Ignore system-specific files
+.idea/  # IntelliJ/PyCharm project files
+
+# Ignore Django secret files
+.env
+
+# Ignore static and media files (optional)
+staticfiles/
+media/
+
+# Ignore logs
+*.log
