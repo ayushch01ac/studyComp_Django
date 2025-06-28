@@ -1,6 +1,9 @@
+from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
 from django.shortcuts import render, redirect
+from django.contrib import messages
 # from django.http import HttpResponse
+from django.contrib.auth.models import User
 from .models import Room, Topic
 from .forms import RoomForm
 # Create your views here.
@@ -10,6 +13,31 @@ from .forms import RoomForm
 #     {'id': 2, 'name': 'Django'},
 #     {'id': 3, 'name': 'Base'}
 # ]
+
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(username=username)
+        except:
+            messages.error(request, "User does not exist")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, "Username or Password is incorrect")
+
+    context = {}
+    return render(request, 'base/login_register.html', context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
