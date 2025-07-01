@@ -16,6 +16,8 @@ from .forms import RoomForm
 #     {'id': 3, 'name': 'Base'}
 # ]
 
+# all user passwords are = djangopass
+
 def loginPage(request):
     page = 'login'
 
@@ -72,8 +74,9 @@ def home(request):
 
     topics = Topic.objects.all()
     room_count = rooms.count()
+    roomMessages = Message.objects.filter(Q(room__topic__name__icontains=q))
 
-    context = {'rooms': rooms, 'topics': topics, 'room_count': room_count}
+    context = {'rooms': rooms, 'topics': topics, 'room_count': room_count, 'roomMessages': roomMessages}
     return render(request, 'base/home.html', context)
 
 def room(request, pk):
