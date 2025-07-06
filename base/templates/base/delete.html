@@ -1,12 +1,28 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<div class="flex justify-center items-center min-h-[60vh]">
+  <div class="w-full max-w-md bg-white p-6 rounded-xl shadow-md border border-gray-200 text-center space-y-6">
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <p>Are you sure you want to delete "{{obj}}"</p>
-    <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
-    <input type="submit" value="Confirm">
-</form>
+    <h2 class="text-xl font-semibold text-gray-800">
+      Are you sure you want to delete <span class="font-bold">"{{ obj }}"</span>?
+    </h2>
 
+    <form method="POST" action="" class="flex flex-col items-center space-y-4">
+      {% csrf_token %}
+
+      <div class="flex gap-4">
+        <a href="{{ request.META.HTTP_REFERER }}"
+           class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition">
+          Cancel
+        </a>
+        <button type="submit"
+                class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+          Confirm Delete
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
 {% endblock content %}

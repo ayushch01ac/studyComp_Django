@@ -1,28 +1,37 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<div class="space-y-6">
 
-<style>
-    .profile-container {
-        display: grid;
-        grid-template-columns: 1fr 3fr 1fr;
-    }
-</style>
+  <!-- Profile Header -->
+  <div class="bg-white p-6 rounded-xl shadow border border-gray-200 text-center">
+    <h1 class="text-3xl font-bold text-gray-800">@{{ user.username }}</h1>
+  </div>
 
-<h1>{{user.username}}</h1>
+  <!-- 3-Column Grid: Topics | Feed | Activity -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
-<div class="profile-container">
-
-    <div>
+    <!-- Sidebar: Topics -->
+    <aside class="md:col-span-1">
+      <div class="bg-white p-4 rounded-xl shadow border border-gray-200">
         {% include 'base/topics_component.html' %}
-    </div>
+      </div>
+    </aside>
 
-    <div>
+    <!-- Main: User's Room Feed -->
+    <section class="md:col-span-2 space-y-4">
+      <div class="bg-white p-4 rounded-xl shadow border border-gray-200">
         {% include 'base/feed_component.html' %}
-    </div>
+      </div>
+    </section>
 
-    <div>
+    <!-- Sidebar: Recent Activity -->
+    <aside class="md:col-span-1">
+      <div class="bg-white p-4 rounded-xl shadow border border-gray-200">
         {% include 'base/activity_component.html' %}
-    </div>
+      </div>
+    </aside>
+
+  </div>
 </div>
 {% endblock content %}
