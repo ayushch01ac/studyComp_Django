@@ -9,18 +9,37 @@
     <form method="POST" action="" class="space-y-4">
       {% csrf_token %}
 
-      <!-- Render each field with padding and labels -->
-      <!-- {{ form.as_p }}-->
+      <!-- Topic field with datalist -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Topic</label>
+        <input
+          type="text"
+          name="topic"
+          list="topics"
+          placeholder="Select or type a topic"
+          class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          required
+        />
+        <datalist id="topics">
+          {% for topic in topics %}
+            <option value="{{ topic.name }}">
+          {% endfor %}
+        </datalist>
+      </div>
+
+      <!-- Loop through remaining fields manually -->
       {% for field in form %}
-        <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            {{ field.label_tag }}
-          </label>
-          {{ field|add_class:"w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" }}
-          {% if field.errors %}
-            <p class="text-sm text-red-500 mt-1">{{ field.errors }}</p>
-          {% endif %}
-        </div>
+        {% if field.name != 'topic' %}
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              {{ field.label_tag }}
+            </label>
+            {{ field|add_class:"w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" }}
+            {% if field.errors %}
+              <p class="text-sm text-red-500 mt-1">{{ field.errors }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
       {% endfor %}
 
       <button
