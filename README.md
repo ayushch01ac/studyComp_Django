@@ -1,6 +1,6 @@
 * * *
 
-```markdown
+
 # 📚 Study Room – Django-Based Chat App
 
 A full-stack web application where users can register, log in, create topic-based public rooms, and engage in real-time conversations. Built using Django's MVT architecture with custom user authentication and secure environment-based deployment.
@@ -36,7 +36,7 @@ A full-stack web application where users can register, log in, create topic-base
    ```bash
    git clone https://github.com/ayushch01ac/studyComp_Django.git
    cd studyComp_Django
-```
+    ```
 
 2.  **Create and activate a virtual environment**
     ```bash
@@ -79,8 +79,7 @@ A full-stack web application where users can register, log in, create topic-base
 ------------
 
 *   🔗 GitHub: [studyComp\_Django](https://github.com/ayushch01ac/studyComp_Django)
-*   🚀 Live App: [chatroompa4f.onrender.com](https://chatroompa4f.onrender.com)
-
+*   🚀 Live App: https://chatroom-pa4f.onrender.com/
 * * *
 
 📄 License
